@@ -6,4 +6,7 @@
   .title {
     @include titleFont;
   }
+  .create-user {
+    @include createButton
+  }
 }

@@ -5,12 +5,31 @@ $color-primary-lighter: lighten($color-primary, 10%);
 $color-background: #FFFFFF;
 $color-background-darker: darken($color-background, 10%);
 $color-foreground: #111111;
-
+$create-button-size: 54px;
 $spacing-small: 10px;
 $spacing-medium: 20px;
 
 $gutter-width: $spacing-medium;
 
+@mixin createButton(){
+  @include font(32px, $create-button-size, $color-background);
+  text-align: center;
+  display: block;
+  width: $create-button-size;
+  height: $create-button-size;
+  border-radius: 50%;
+  background-color: $color-primary;
+  position: fixed;
+  right: $gutter-width;
+  bottom: 60px;
+  }
+@mixin createPage(){
+  margin: $gutter-width;
+
+  .title {
+    @include titleFont;
+  }
+}
 @mixin font($font-size, $line-height: 1.5, $color: $color-foreground) {
   font-family: "Roboto", sans-serif;
   font-size: $font-size;

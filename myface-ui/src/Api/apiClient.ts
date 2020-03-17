@@ -34,6 +34,14 @@ export interface Post {
     dislikes: Interaction[];
 }
 
+export interface NewUser {
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+    profileImageUrl: string;
+    coverImageUrl: string;
+}
 
 export interface NewPost {
     message: string;
@@ -80,6 +88,20 @@ export async function createPost(newPost: NewPost) {
         body: JSON.stringify(newPost),
     });
     
+    if (!response.ok) {
+        throw new Error(await response.json())
+    }
+}
+
+export async function createUser(newUser: NewUser) {
+    const response = await fetch(`https://localhost:5001/users/create`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newUser),
+    });
+
     if (!response.ok) {
         throw new Error(await response.json())
     }

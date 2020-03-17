@@ -8,6 +8,7 @@ import {Login} from "../Pages/Login/Login";
 import {LoginContext, LoginManager} from "../Components/LoginManager/LoginManager";
 import {Profile} from "../Pages/Profile/Profile";
 import {CreatePost} from "../Pages/CreatePost/CreatePost";
+import {CreateUser} from "../Pages/CreateUser/CreateUser";
 
 
 function Routes(): ReactElement {
@@ -22,6 +23,7 @@ function Routes(): ReactElement {
             <Route exact path="/" component={Feed}/>
             <Route exact path="/users" component={Users}/>
             <Route exact path="/users/:id" component={Profile}/>
+            <Route exact path="/new-user" component={CreateUser}/>
             <Route exact path="/new-post" component={CreatePost}/>
             <Route path="" component={NotFound}/>
         </Switch>

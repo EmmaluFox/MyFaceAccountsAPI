@@ -1,6 +1,6 @@
 ﻿@import "../../Styles/constants";
 
-$create-post-button-size: 54px;
+
 
 .feed {
   padding: $gutter-width;
@@ -10,15 +10,6 @@ $create-post-button-size: 54px;
   }
   
   .create-post {
-    @include font(32px, $create-post-button-size, $color-background);
-    text-align: center;
-    display: block;
-    width: $create-post-button-size;
-    height: $create-post-button-size;
-    border-radius: 50%;
-    background-color: $color-primary;
-    position: fixed;
-    right: $gutter-width;
-    bottom: 60px;
+    @include createButton
   }
 }
