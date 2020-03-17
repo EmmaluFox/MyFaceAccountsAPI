@@ -34,6 +34,7 @@ export interface Post {
     dislikes: Interaction[];
 }
 
+
 export interface NewPost {
     message: string;
     imageUrl: string;
