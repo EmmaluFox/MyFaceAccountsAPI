@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿﻿using System.ComponentModel.DataAnnotations;
 
 namespace MyFace.Models.Request
 {
@@ -15,6 +15,10 @@ namespace MyFace.Models.Request
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        
+        [Required]
+        [StringLength(25)]
+        public string Password { get; set; }
         
         [Required]
         [StringLength(70)]
