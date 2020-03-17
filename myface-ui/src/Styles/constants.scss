@@ -25,7 +25,7 @@ $gutter-width: $spacing-medium;
   }
 @mixin createPage(){
   margin: $gutter-width;
-
+ 
   .title {
     @include titleFont;
   }
