@@ -1,10 +1,10 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-$color-primary: orange;
-$color-primary-lighter: lighten($color-primary, 10%);
-$color-background: #FFFFFF;
-$color-background-darker: darken($color-background, 10%);
-$color-foreground: #111111;
+$color-primary: #7aac26;
+$color-primary-lighter: lighten($color-primary, 20%);
+$color-background: #ffffff;
+$color-background-lighter: lighten($color-background, 10%);
+$color-foreground: #2e4000;
 $create-button-size: 54px;
 $spacing-small: 10px;
 $spacing-medium: 20px;

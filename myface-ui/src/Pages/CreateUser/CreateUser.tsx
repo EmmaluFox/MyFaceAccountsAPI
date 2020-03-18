@@ -10,6 +10,7 @@ export function CreateUserForm(): JSX.Element {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [profileImageUrl, setProfileImageUrl] = useState("");
     const [coverImageUrl, setCoverImageUrl] = useState("");
@@ -18,7 +19,7 @@ export function CreateUserForm(): JSX.Element {
     function submitForm(event: FormEvent) {
         event.preventDefault();
         setStatus("SUBMITTING");
-        createUser({firstName, lastName, username, email, profileImageUrl, coverImageUrl})
+        createUser({firstName, lastName, username, password, email, profileImageUrl, coverImageUrl})
             .then(() => setStatus("FINISHED"))
             .catch(() => setStatus("ERROR"));
     }
@@ -48,6 +49,11 @@ export function CreateUserForm(): JSX.Element {
             </label>
 
             <label className="form-label">
+                Choose a Password
+                <input className="form-input" value={password} onChange={event => setPassword(event.target.value)}/>
+            </label>
+
+            <label className="form-label">
                 Email Address
                 <input className="form-input" value={email} onChange={event => setEmail(event.target.value)}/>
             </label>
@@ -62,7 +68,7 @@ export function CreateUserForm(): JSX.Element {
                 <input className="form-input" value={coverImageUrl} onChange={event => setCoverImageUrl(event.target.value)}/>
             </label>
             
-            <button className="submit-button" disabled={status === "SUBMITTING"} type="submit">Create Post</button>
+            <button className="submit-button" disabled={status === "SUBMITTING"} type="submit">Create User</button>
             {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
         </form>
     );
