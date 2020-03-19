@@ -13,7 +13,7 @@ namespace MyFace.Controllers
     [ApiController]
     [Route("/login")]
     
-    public class LoginController : Controller
+    public class LoginController : ControllerBase
     {
         private readonly ILoginRepo _login;
 

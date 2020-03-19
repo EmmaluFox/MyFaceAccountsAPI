@@ -17,19 +17,19 @@ function Routes(): ReactElement {
     
     
     
-    if (!loginContext.authHeader) {
-        return <LoginForm/>
-    }
+    // if (!loginContext.authHeader) {
+    //     return <LoginForm/>
+    // }
     
     return (
         
         <Switch>
-            <div>{authHeader}</div>
             <Route exact path="/" component={Feed}/>
             <Route exact path="/users" component={Users}/>
             <Route exact path="/users/:id" component={Profile}/>
             <Route exact path="/new-user" component={CreateUser}/>
             <Route exact path="/new-post" component={CreatePost}/>
+            <Route exact path="/login" component={LoginForm}/>
             <Route path="" component={NotFound}/>
         </Switch>
     );

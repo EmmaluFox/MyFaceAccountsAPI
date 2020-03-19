@@ -2,29 +2,24 @@
 import {Page} from "../Page/Page";
 import {LoginContext} from "../../Components/LoginManager/LoginManager";
 import "./Login.scss";
-import {createUser, fetchUserByUsername, loginRequest} from "../../Api/apiClient";
-import {Interface} from "readline";
+import {loginRequest} from "../../Api/apiClient";
+import {Feed} from "../Feed/Feed";
 
-
-type FormStatus = "READY" | "SUBMITTING" | "DENIED" | "AUTHENTICATED"
-
-const [authHeader, setAuthHeader] = useState("");
-const loginContext = useContext(LoginContext);
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-
-    function tryLogin(event: FormEvent) {
-        const [status, setStatus] = useState<FormStatus>("READY");
-        event.preventDefault();
-        setStatus("SUBMITTING");
-        loginRequest({username, password})
-                // .then(() => setAuthHeader())
-                .catch(() => setStatus("DENIED"));
-            loginContext.logIn();
-    }
- 
     export function LoginForm(): JSX.Element {
- 
+        const [authHeader, setAuthHeader] = useState("FALSE");
+        const [dateStamp, setDateStamp] = useState(0);
+        const [username, setUsername] = useState("");
+        const [password, setPassword] = useState("");
+        const loginContext = useContext(LoginContext);
+        
+        function tryLogin(event: FormEvent) {
+            event.preventDefault();
+            loginRequest({username, password})
+                .then(() => loginContext.logIn())
+                .then(() => setAuthHeader(loginContext.authHeader))
+                .catch(() => setAuthHeader("DENIED"));
+            return (<Feed/>)
+        }
     return (
         <Page containerClassName="login">
             <h1 className="title">Login</h1>
@@ -38,8 +33,7 @@ const [password, setPassword] = useState("");
                     Password
                     <input className="form-input" type={"password"} value={password} onChange={event => setPassword(event.target.value)}/>
                 </label>
-                
-                <button className="submit-button" type="submit">Log In</button>
+                <button className="submit-button" type="submit" onClick={() => setDateStamp(Date.now)}>Log In</button>
             </form>
         </Page>
     );

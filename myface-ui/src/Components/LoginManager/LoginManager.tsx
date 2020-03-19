@@ -1,4 +1,5 @@
 ﻿import React, {createContext, ReactNode, useState} from "react";
+import {LoginForm} from "../../Pages/Login/LoginForm";
 
 export const LoginContext = createContext({
     isLoggedIn: false,
@@ -13,7 +14,7 @@ interface LoginManagerProps {
 }
 
 export function LoginManager(props: LoginManagerProps): JSX.Element {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [authHeader, setAuthHeader] = useState("");
     
     function logIn() {
@@ -22,6 +23,10 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
     
     function logOut() {
         setLoggedIn(false);
+        setAuthHeader("DENIED");
+        return (
+            <LoginForm/>
+        )
     }
     
     const context = {

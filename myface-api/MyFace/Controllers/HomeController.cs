@@ -12,6 +12,7 @@ namespace MyFace.Controllers
 
             return new Dictionary<string, string>
             {
+                {"/login", "for user authentication."},
                 {"/users", "for information on users."},
                 {"/posts", "for information on posts."},
                 {"/interactions", "for information about the interactions between users and posts"},
