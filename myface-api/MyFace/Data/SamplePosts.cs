@@ -4,7 +4,7 @@ using MyFace.Models.Database;
 
 namespace MyFace.Data
 {
-    public static class SamplePosts
+    public class SamplePosts
     {
         public static int NumberOfPosts => 200;
         

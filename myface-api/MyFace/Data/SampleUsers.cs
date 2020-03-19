@@ -4,7 +4,7 @@ using MyFace.Models.Database;
 
 namespace MyFace.Data
 {
-    public static class SampleUsers
+    public class SampleUsers
     {
         public static int NumberOfUsers = 100;
         
@@ -120,7 +120,8 @@ namespace MyFace.Data
 
         private static User CreateRandomUser(int index)
         {
-            var salt = HashAlgorithm.GetSalt();
+            IHashService hash = new HashAlgorithm();
+            var salt = hash.GetSalt();
             return new User
             {
                 FirstName = _data[index][0],
@@ -130,7 +131,7 @@ namespace MyFace.Data
                 ProfileImageUrl = ImageGenerator.GetProfileImage(_data[index][2]),
                 CoverImageUrl = ImageGenerator.GetCoverImage(index),
                 Salt = salt,
-                HashedPassword = HashAlgorithm.HashPassword(salt, "abcd1234")
+                HashedPassword = hash.HashPassword(salt, "abcd1234")
             };
         }
     }

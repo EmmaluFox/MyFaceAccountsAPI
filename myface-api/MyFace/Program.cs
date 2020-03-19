@@ -14,9 +14,7 @@ namespace MyFace
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
             CreateDbIfNotExists(host);
-            
             host.Run();
         }
 
@@ -24,7 +22,6 @@ namespace MyFace
         {
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
-
             var context = services.GetRequiredService<MyFaceDbContext>();
             context.Database.EnsureCreated();
 
@@ -44,7 +41,7 @@ namespace MyFace
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }

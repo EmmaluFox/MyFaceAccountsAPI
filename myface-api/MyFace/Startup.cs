@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MyFace.Data;
 using MyFace.Repositories;
 
 namespace MyFace
@@ -47,6 +48,8 @@ namespace MyFace
             
             services.AddTransient<IPostsRepo, PostsRepo>();
             services.AddTransient<IUsersRepo, UsersRepo>();
+            services.AddTransient<ILoginRepo, LoginRepo>();
+            services.AddTransient<IHashService, HashAlgorithm>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

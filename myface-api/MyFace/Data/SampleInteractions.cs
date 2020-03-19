@@ -5,7 +5,7 @@ using MyFace.Models.Database;
 
 namespace MyFace.Data
 {
-    public static class SampleInteractions
+    public class SampleInteractions
     {
         public static IEnumerable<Interaction> GetInteractions()
         {

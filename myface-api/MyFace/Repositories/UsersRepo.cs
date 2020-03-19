@@ -61,7 +61,8 @@ namespace MyFace.Repositories
 
         public User Create(CreateUserRequest newUser)
         {
-            var salt = HashAlgorithm.GetSalt();
+            IHashService hash = new HashAlgorithm();
+            var salt = hash.GetSalt();
             var insertResponse = _context.Users.Add(new User
             {
                 FirstName = newUser.FirstName,
@@ -71,7 +72,7 @@ namespace MyFace.Repositories
                 ProfileImageUrl = newUser.ProfileImageUrl,
                 CoverImageUrl = newUser.CoverImageUrl,
                 Salt = salt,
-                HashedPassword = HashAlgorithm.HashPassword(salt, newUser.Password)
+                HashedPassword = hash.HashPassword(salt, newUser.Password)
             });
             _context.SaveChanges();
 
