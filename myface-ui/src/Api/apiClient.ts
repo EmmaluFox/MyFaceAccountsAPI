@@ -50,6 +50,12 @@ export interface NewPost {
     userId: number;
 }
 
+export interface Login {
+    username: string;
+    password: string;
+}
+
+
 export async function fetchUsers(searchTerm: string, page: number, pageSize: number): Promise<ListResponse<User>> {
     const response = await fetch(`https://localhost:5001/users?search=${searchTerm}&page=${page}&pageSize=${pageSize}`);
     return await response.json();
@@ -57,6 +63,11 @@ export async function fetchUsers(searchTerm: string, page: number, pageSize: num
 
 export async function fetchUser(userId: string | number): Promise<User> {
     const response = await fetch(`https://localhost:5001/users/${userId}`);
+    return await response.json();
+}
+
+export async function fetchUserByUsername(username: string | null): Promise<User> {
+    const response = await fetch(`https://localhost:5001/users?search=${username}`);
     return await response.json();
 }
 
@@ -101,6 +112,19 @@ export async function createUser(newUser: NewUser) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(newUser),
+    });
+
+    if (!response.ok) {
+        throw new Error(await response.json())
+    }
+}
+export async function loginRequest(login: Login) {
+    const response = await fetch(`https://localhost:5001/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(login),
     });
 
     if (!response.ok) {

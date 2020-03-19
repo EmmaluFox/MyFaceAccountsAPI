@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;
 using MyFace.Models.Database;
@@ -12,7 +13,7 @@ namespace MyFace.Controllers
     [ApiController]
     [Route("/login")]
     
-    public class LoginController : ControllerBase
+    public class LoginController : Controller
     {
         private readonly ILoginRepo _login;
 
@@ -21,11 +22,19 @@ namespace MyFace.Controllers
             _login = login;
         }
         
-        // [HttpGet("{username}")]
-        // public ActionResult<LoginResponse> GetByUsername([FromForm] string username)
-        // {
-        //     username
-        //     return new LoginResponse();
-        // }
+        [HttpPost()]
+        public IActionResult LoginAuthentication(LoginRequest loginRequest)
+        {
+            try
+            {
+                User currentUser = _login.Login(loginRequest);
+                string authHeader = _login.AuthString(currentUser);
+                return Ok(authHeader);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace MyFace.Repositories
     public interface ILoginRepo
     {
         User Login(LoginRequest login);
-        string AuthString(User login);
+        string AuthString(User currentUser);
         string LoginUsername(LoginRequest login);
     }
     public class LoginRepo : ILoginRepo
@@ -36,13 +36,13 @@ namespace MyFace.Repositories
             
         }
         
-        public string AuthString(User login)
+        public string AuthString(User currentUser)
         {
-            if (login == null) 
+            if (currentUser == null) 
             {
                 return "";
             }
-            return login.Username + login.Id + DateTime.Now;
+            return currentUser.Username + "," + currentUser.Id + "," + DateTime.Now;
         }
 
         

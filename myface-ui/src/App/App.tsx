@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {Feed} from "../Pages/Feed/Feed";
 import {Users} from "../Pages/Users/Users";
 import {NotFound} from "../Pages/NotFound/NotFound";
-import {Login} from "../Pages/Login/Login";
+import {LoginForm} from "../Pages/Login/LoginForm";
 import {LoginContext, LoginManager} from "../Components/LoginManager/LoginManager";
 import {Profile} from "../Pages/Profile/Profile";
 import {CreatePost} from "../Pages/CreatePost/CreatePost";
@@ -13,13 +13,18 @@ import {CreateUser} from "../Pages/CreateUser/CreateUser";
 
 function Routes(): ReactElement {
     const loginContext = useContext(LoginContext);
+    const authHeader = loginContext.authHeader;
     
-    if (!loginContext.isLoggedIn) {
-        return <Login/>
+    
+    
+    if (!loginContext.authHeader) {
+        return <LoginForm/>
     }
     
     return (
+        
         <Switch>
+            <div>{authHeader}</div>
             <Route exact path="/" component={Feed}/>
             <Route exact path="/users" component={Users}/>
             <Route exact path="/users/:id" component={Profile}/>
