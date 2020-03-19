@@ -20,6 +20,7 @@ import {Feed} from "../Feed/Feed";
                 .catch(() => setAuthHeader("DENIED"));
             return (<Feed/>)
         }
+        
     return (
         <Page containerClassName="login">
             <h1 className="title">Login</h1>
